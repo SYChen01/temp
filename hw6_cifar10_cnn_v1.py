@@ -81,7 +81,7 @@ batch_size = 64
 opt_rms = keras.optimizers.rmsprop(lr=0.001,decay=1e-6)
 model.compile(loss='categorical_crossentropy', optimizer=opt_rms, metrics=['accuracy'])
 model.fit_generator(datagen.flow(x_train, y_train, batch_size=batch_size),\
-                    steps_per_epoch=x_train.shape[0] // batch_size,epochs=125,\
+                    steps_per_epoch=x_train.shape[0] // batch_size,epochs=80,\
                     verbose=1,validation_data=(x_test,y_test),callbacks=[LearningRateScheduler(lr_schedule)])
 
 #save to disk
@@ -94,4 +94,3 @@ model.save_weights('model.h5')
 #testing
 scores = model.evaluate(x_test, y_test, batch_size=128, verbose=1)
 print('\nTest result: %.3f loss: %.3f' % (scores[1]*100,scores[0]))
-
